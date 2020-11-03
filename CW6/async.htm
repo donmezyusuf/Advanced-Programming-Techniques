@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!-- saved from url=(0045)https://blm-fsmvu.github.io/305/work/CW6.html -->
+<html lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" href="https://blm-fsmvu.github.io/305/images/icon192.png">
+    <title>Async Programming </title>
+
+  <style> /* CSS comment */
+    body { max-width: 440px; }
+    #url { width: 190px; }
+    span, #url { color: blue; }
+  </style>
+</head>
+
+<body cz-shortcut-listen="true">   <!-- HTML comment: Modify all items marked xxx -->
+
+<h2 id="title" title="Modify xxx">xxx</h2>
+<p title="navigator.platform">
+  Platform: <span id="plat">??</span>
+</p>
+<p title="Battery level">
+  Battery level: <span id="level">??</span>
+</p>
+<p title="Latitude/Longitude">
+  Location: <span id="loc">??</span>
+</p>
+<p title="URL exists?">
+  URL <input type="url" id="url" value="https://maeyler.github.io/" onchange="check()"> <span id="resp">??</span>
+</p>
+<hr>
+<b>Sample code</b>
+<pre id="sample">function init() {<br>//write your code here<br>}<br>function check() {<br>//write your code here<br>}</pre>
+
+<hr>
+
+<script>
+"use strict";
+// JavaScript comment
+function check() {
+//write your code here
+  fetch(url.value).then(response => {
+    console.log(response.ok)
+    if(response.ok){
+      resp.innerText= "Ok"
+    }
+
+  }
+  ).cath(e =>resp.innerText = e)
+}
+
+function init() {
+//write your code here
+
+  let myData= document.querySelectorAll('span')
+
+  myData[0].innerText = navigator.platform;
+
+  navigator.getBattery().then(a => 
+    myData[1].innerText = (a.level * 100) + "%"
+  )
+
+  navigator.geolocation.getCurrentPosition((x) => 
+    myData[2].innerText = x.coords.latitude.toFixed(4) + 
+    " " + x.coords.longitude.toFixed(4)
+  )
+
+    check();
+  }
+
+    title.innerText = document.title;
+    sample.innerText = init+'\n'+check;
+    init();
+</script>
+
+
+
+</body></html>
