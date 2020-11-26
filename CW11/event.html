@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" href="/305/images/icon192.png">
+    <title>Battery Status</title>
+
+  <style> /* CSS comment */
+    body { max-width: 440px; }
+    #url { width: 190px; }
+    span, #url { color: blue; }
+  </style>
+</head>
+
+<body>   <!-- HTML comment: Modify all items marked xxx -->
+
+<h2 id=title title="Modify xxx"></h2>
+<p id="isCharge">
+  ?
+</p>
+<p title="Battery level">
+  Battery level: <span id=level>??</span>
+  <span id="remaining">?</span>
+</p>
+<p>
+  Online Status: <span id=isOnline>??</span>
+</p>
+<p>
+  Keyboard <span id="clickedKeys"></span>
+</p>
+<hr />
+<b>Sample code</b>
+<pre id=sample>This text is not shown. Why?</pre>
+
+<hr />
+
+<script>
+"use strict";
+function init() {
+  // Pil yönetimi -----------------------------
+  navigator.getBattery().then(function(battery) {
+    if(battery.charging){
+      document.getElementById("isCharge").innerText = "Charging..."
+    }else{
+      document.getElementById("isCharge").innerText = "Discharging..."
+    }
+
+    document.getElementById("level").innerText = "%"+ battery.level*100;
+
+    let minute = battery.dischargingTime/60;
+    let seconds = battery.dischargingTime%60;
+
+    if(battery.dischargingTime === Infinity){
+      alert("Sisteminiz şarja takılı, kalan pil süresini gözlemlemek için pilinizi çıkarın, bekleyin ve sayfaya reset atın")
+    }
+    document.getElementById("remaining").innerText = minute+ " dakika " + seconds+ " saniye sonra pil bitecek.";
+
+  battery.addEventListener('chargingchange', function() {
+    console.log(battery.charging)
+    if(battery.charging){
+      document.getElementById("isCharge").innerText = "Charging..."
+    }else{
+      document.getElementById("isCharge").innerText = "Discharging..."
+    }
+  });
+  
+  battery.addEventListener("chargingtimechange", function() {
+    console.log(battery.chargingTime);
+  });
+
+  battery.addEventListener("dischargingtimechange", function() {
+    let minute = battery.dischargingTime/60;
+    let seconds = battery.dischargingTime%60;
+
+    if(battery.dischargingTime === Infinity){
+      alert("Sisteminiz şarja takılı, kalan pil süresini gözlemlemek için pilinizi çıkarın, bekleyin ve sayfaya reset atın")
+    }
+
+    document.getElementById("remaining").innerText = minute+ " dakika " + seconds+ " saniye sonra pil bitecek.";
+  });
+
+  battery.addEventListener("levelchange", function() {
+    document.getElementById("level").innerText = "%"+ battery.level*100;
+  });
+});
+
+//online status  ----------------------
+let condition = navigator.onLine;
+  if(condition){
+    document.getElementById("isOnline").innerText = "Online..."
+  }
+  else if(condition===false){
+    document.getElementById("isOnline").innerText = "Offline..."
+  }
+
+window.addEventListener('load', function() {
+  function updateOnlineStatus(event) {
+    let condition = navigator.onLine;
+    if(condition){
+      document.getElementById("isOnline").innerText = "Online..."
+    }
+    else if(condition===false){
+      document.getElementById("isOnline").innerText = "Offline..."
+    }
+  }
+
+  window.addEventListener('online',  updateOnlineStatus);
+  window.addEventListener('offline', updateOnlineStatus);
+});
+
+//keypress --------------------
+window.addEventListener('keydown', (event) => {
+  const keyName = event.key;
+  document.getElementById("clickedKeys").innerText = 
+  document.getElementById("clickedKeys").innerText + " " + keyName + " ";
+
+}, false);
+}
+
+  title.innerText = document.title;
+  sample.innerText = init+'\n';
+  init();
+</script>
+
+</body>
+</html>
