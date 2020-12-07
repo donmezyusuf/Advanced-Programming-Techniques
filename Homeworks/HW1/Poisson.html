@@ -1,0 +1,44 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Poisson</title>
+  </head>
+  <body>
+    <pre id="main"></pre>
+    <pre id="out"></p>
+  </body>
+  <script>
+    function app() {
+      function rFact(num) {
+        if (num === 0) {
+          return 1;
+        } else {
+          return num * rFact(num - 1);
+        }
+      }
+      const calculate = (x, lambda) => {
+        return Math.exp(-lambda) * (Math.pow(lambda, x) / rFact(x));
+      };
+
+      const L = [0.5, 1, 1.5, 2, 2.5, 3];
+      let result = "     λ=0.5   λ=1   λ=1.5   λ=2    λ=2.5   λ=3\n";
+
+      for (let i = 0; i < 9; i++) {
+        let x = i;
+        result = result + "x=" + x + " ";
+
+        for (let index = 0; index < L.length; index++) {
+          lambda = L[index];
+          result = result + calculate(x, lambda).toFixed(4) + " ";
+        }
+        result = result + "\n";
+      }
+
+      document.getElementById("main").innerHTML = result;
+    }
+    app();
+
+    document.getElementById("out").innerText = app.toString();
+  </script>
+</html>

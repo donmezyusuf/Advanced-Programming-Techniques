@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" href="https://blm-fsmvu.github.io/305/images/icon192.png">
+    <title>Dönüştürme </title>
+
+  <style> /* CSS comment */
+    body { max-width: 440px; }
+    #cmVal { width: 50px }
+    #inchVal { width: 50px }
+    #out {
+        font-size: 18px;
+        background: blue;
+        color: white;
+        text-align: center;
+        padding: 10px;
+    }
+  </style>
+</head>
+
+<body>   <!-- HTML comment: Modify all items marked xxx -->
+
+
+<h2 id=title>This text is not shown. Why?</h2>
+
+<h4>
+  CM'deki değer her zaman inch'e çevirilip inch'e yazılır. Inch'teki değer cm'ye çevirilip cm'ye yazılır.
+</h4>
+cm değeri 
+<input type=number id="cmVal" value=0 onChange="out.innerText=value">
+inch değeri 
+<input type=number id="inchVal" value=0 onChange="out.innerText=value">
+&emsp;
+<input type=button value=Dönüştür onClick="convertUpper()">
+<p id=out>This text is not shown. Why?</p>
+
+<hr />
+<b>Sample code</b>
+<pre id=sample>This text is not shown. Why?</pre>
+
+<hr />
+<p>Ref: <a href="https://www.w3schools.com/js/" 
+   target="NewTab">JS Tutorial</a>
+</p>
+
+<script>
+"use strict";
+// JavaScript comment
+class Conversion{
+  constructor(){
+    this.cmVal = document.getElementById("cmVal");
+    this.inchVal = document.getElementById("inchVal");
+  }
+
+  get convert(){
+    let a = (Number(this.cmVal.value) / 2.54).toFixed(1);
+    let b = (Number(this.inchVal.value) * 2.54).toFixed(1);
+
+    this.cmVal.value = b;
+    this.inchVal.value = a;    
+
+    console.log(a)
+    console.log(b)
+  }
+}
+
+function convertUpper() {
+  let donustur = new Conversion(); 
+  donustur.convert()
+  //Butonu aktifşeitirmek için yazılan bir fonksiyon onclik çalışmadığı için bu şekilde çalıştırmak istedim.
+  // cm değeri inch'e, inch değeri cm ye çevriliyor
+}
+
+    //global variable id is the HTML element with id 
+    //const title = document.getElementById("title");
+    title.innerText = document.title;
+    sample.innerText = Conversion.toString();
+    out.innerText = 0; convertUpper();
+</script>
+
+</body>
+</html>
