@@ -1,14 +1,42 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="reset.css" />
+
     <link rel="stylesheet" href="style.css" />
     <meta charset="utf-8" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body>
     <div id="container">
-        <p>asd</p>
+        <div id="ListPart">
+          <div class="HeaderContainer">
+            <h3 style="margin-left:1vw">To Do List</h3>
+          </div>
+          <div class="Reminders">
+            <div style="width: 100%; align-self:flex-end; margin-bottom: 12px;">
+              <button onclick="appList.AddItem()" style="float: right;" class="AddIconContainer">
+                <span class="icon plus-icon"></span>
+              </button>
+            </div>
+            <ul id="ReminderUL">
+              <!--
+              <li onclick="appList.EditMode(id)" id="1" class="ReminderItem">
+                <button class="iconContainer">
+                  <span class="icon checkmark-icon"></span>
+                </button>
+                <p class="ReminderText">Çöpler Atılacak</p>
+              </li>
+              <li>
+                <p>Bulaşıklar Yıkanacak</p>
+              </li>
+              -->
+            </ul>
+          </div>
+          <div id="">
+
+          </div>
+        </div>
     </div>
+    <script src="app.js"></script>
   </body>
 </html>
