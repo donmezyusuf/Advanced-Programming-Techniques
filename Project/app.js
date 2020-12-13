@@ -125,6 +125,11 @@ class List {
     }
   };
 }
+  let appList;
+if (confirm('-Dikkat bu websitesi çerezleri kullanmaktadır. Çerez kullanımına izin veriyor musunuz?\n-This website uses cookies. Do you allow the use of cookies?')) {
+  appList = new List();
+  appList.LoadLocalStorage();
+} else {
+    alert("Çerezlere izin vermediniz.")
+}
 
-let appList = new List();
-appList.LoadLocalStorage();
