@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <link rel="stylesheet" href="style.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <div id="container">
+        <div id="ListPart">
+          <div class="HeaderContainer">
+            <h3 style="margin-left:1vw">To Do List</h3>
+          </div>
+          <div class="Reminders">
+            <div style="margin-top:16px; margin-left: 4px;">
+              <p style="color:white">
+                This web application is a simple to do list. When you add a new note, this note is saved in your browser (with localStorage), so if you do not clear the browser memory, your note will not be lost when you refresh the page. 
+              </p>
+              <p style="margin-top: 2px; color:red">
+                This is not a proffesional solution so you should consider possible data losses.
+              </p>
+            </div>
+            <div style="width: 100%; align-self:flex-end; margin-bottom: 12px;">
+              <button onclick="appList.AddItem()" style="float: right;" class="AddIconContainer">
+                <span class="icon plus-icon"></span>
+              </button>
+            </div>
+            <ul id="ReminderUL">
+              <!--
+              <li onclick="appList.EditMode(id)" id="1" class="ReminderItem">
+                <button class="iconContainer">
+                  <span class="icon checkmark-icon"></span>
+                </button>
+                <p class="ReminderText">Çöpler Atılacak</p>
+              </li>
+              -->
+            </ul>
+          </div>
+          <div id="">
+
+          </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
